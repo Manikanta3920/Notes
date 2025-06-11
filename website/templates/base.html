@@ -14,19 +14,53 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>{% block title %}Home{% endblock %}</title>
 </head>
 <style>
-  .navbar {
-  min-height: 70px;       /* Increase height as needed */
-  padding-top: 15px;      /* Adjust top padding */
-  padding-bottom: 15px;   /* Adjust bottom padding */
-  background: linear-gradient(90deg, rgb(234, 212, 90), rgb(37, 252, 87));
+.navbar {
+  background: linear-gradient(90deg, #556270, #4ECDC4); /* Cool soft-teal gradient */
+  min-height: 70px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
+.navbar .nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  margin-right: 15px;
+  transition: 0.3s ease-in-out;
+}
+
+.navbar .nav-link:hover {
+  color: #ffeb3b !important;
+  transform: scale(1.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand i {
+  margin-right: 8px;
+  color: #ffeb3b;
+  font-size: 1.5rem;
+}
+
 .moving-text {
   display: inline-block;
   position: relative;
   animation: move-horizontal 6s linear infinite;
+  color: #ffeb3b;  /* bright yellow to contrast navbar */
+  font-weight: 700;
+  white-space: nowrap;
+  font-size: 22px;
 }
 
 @keyframes move-horizontal {
@@ -50,6 +84,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar">
         <div class="navbar-nav">
+          <a href="/" class="navbar-brand text-warning font-weight-bold">
+  <i class="fa fa-sticky-note mr-2" id="bo"></i>NoteSpot
+</a>
                 {% if user.is_authenticated %}
                 <a href="/" id="home" class="nav-item nav-link">Home</a>
                 <a href="/logout" id="logout" class="nav-item nav-link">Logout</a>
@@ -60,7 +97,7 @@
             </div>
               {% if user.is_authenticated %}
   <div class="ml-auto" style="overflow:hidden; width: 200px;">
-    <span class="moving-text text-info font-weight-bold" style="white-space: nowrap; font-size: 22px;">
+    <span class="moving-text">
       Hello, {{ user.firstName.title() }}
     </span>
   </div>
